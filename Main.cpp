@@ -3,13 +3,15 @@
 
 int main()
 {
-  // Problem 3a
+  // Define ordering on monomials
   const char* ordering = "lex";
   const int n = 3;
 
+  // Define Grobner basis
   std::vector<Polynomial<n>> G = { Polynomial<n>("x + y + z - 3", ordering), Polynomial<n>("x^2 + y^2 + z^2 - 5", ordering), Polynomial<n>("x^3 + y^3 + z^3 - 7", ordering) };
   ConvertToGrobnerBasis(G);
 
+  std::cout << "Grobner Basis:" << std::endl;
   for (unsigned int i = 0; i < G.size(); ++i)
     G[i].printP();
   std::cout << std::endl;
@@ -18,8 +20,6 @@ int main()
   MultivariatePolynomialDivision(f, G, false).printP();
   std::cout << std::endl;
 
-
-  // Problem 3b
   Polynomial<n> g1 = Polynomial<n>("x^5 + y^5 + z^5", ordering);
   MultivariatePolynomialDivision(g1, G, false).printP();
 
